@@ -2,13 +2,16 @@
  * @lc app=leetcode.cn id=7 lang=cpp
  *
  * [7] 整数反转
+ * 
+ * Solution description:
+ * 首先定义返回值时不能使用int类型，会导致处理精度不足引起错误
+ * 重点在于：result = result * 10 + x % 10;
  */
-#include <algorithm>
+
 #include <iostream>
-#include <sstream> //要使用stringstream流应包含此头文件
-#include <stack>
-#include <string>
 using namespace std;
+
+
 
 // @lc code=start
 class Solution
