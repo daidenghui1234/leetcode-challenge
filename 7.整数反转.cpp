@@ -16,33 +16,13 @@ class Solution
 public:
     int reverse(int x)
     {
-        double iret = 0;
-        if ((x >= INT_MAX) || (x <= INT_MIN))
+        long result = 0;
+        while (x != 0)
         {
-            return 0;
+            result = result * 10 + x % 10;
+            x /= 10;
         }
-        if (x < 0) // 记录正负
-        {
-            isNegative = true;
-            x = -x;
-        }
-        while (x > 0)
-        {
-            iret = (iret + (x % 10)) * 10;
-            x = x / 10;
-        }
-        iret = iret / 10;
-        if (isNegative == true)
-        {
-            iret = iret * (-1);
-        }
-        if ((iret >= INT_MAX) || (iret <= INT_MIN))
-        {
-            return 0;
-        }
-        return iret;
+        return (result > INT_MAX || result < INT_MIN) ? 0 : result;
     }
-
-    bool isNegative = false;
 };
 // @lc code=end
