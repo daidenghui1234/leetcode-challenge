@@ -14,26 +14,22 @@ class Solution
 public:
     string longestPalindrome(string s)
     {
-        string ret="";
-        int start=0,end=0;
-        int len1=0,len2=0;
-        int max=0;
-        for(int i=0; i<s.length(); i++)
+        string ret="";       // 返回值
+        int start=0,end=0;  // 记录回文中心两边的字符位置
+        int len=0;          // len记录回文两边匹配成功次数
+        for(int i=0; i<s.length(); i++) // 循环判断 一每一个字符为中心
         {
-            max = ret.length();
-            start=end=i;
-            len1=getlen(s,start,end);
-            if(max < len1*2+1){
-                ret = s.substr(start-len1,len1*2+1);
-                max = ret.length();
+            start=end=i;                // 考虑奇数情况
+            len=getlen(s,start,end);    // 获取两边匹配长度
+            if(ret.length() < len*2+1){ // 判断是否超过之前最大长度
+                ret = s.substr(start-len,len*2+1);
             }
-            if(i<s.length()-1&&s[i]==s[i+1]){
+            if(i<s.length()-1&&s[i]==s[i+1]){   // 考虑偶数情况 当前位置与以一个位置字符相等
                 start=i;
                 end=i+1;
-                len2=getlen(s,start,end);
-                if(max < len2*2+2){
-                    ret = s.substr(start-len2,len2*2+2);
-                    max = ret.length();
+                len=getlen(s,start,end);        // 获取两边匹配长度
+                if(ret.length() < len*2+2){     // 判断是否超过之前最大长度
+                    ret = s.substr(start-len,len*2+2);
                 }
             }
         }
@@ -42,7 +38,8 @@ public:
         return ret;
     }
 private:
-    int getlen(string s,int start,int end)
+
+    int getlen(string s,int start,int end)      //  获取两边匹配（相等）成功的次数
     {
         int len = 0;
         start--;
