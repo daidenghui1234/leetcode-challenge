@@ -41,5 +41,19 @@ int search(vector<int> &nums, int target)
     return count(nums.begin(), nums.end(), target);
 }
 
+int missingNumber(vector<int>& nums) {
+        if(nums.size() < 1) return 0;
+        
+        int loss_number = nums.size();
+        for(int i = 0; i < nums.size(); i++)
+        {
+            if(nums[i] != i)
+            {
+                loss_number = i;
+                break;
+            }
+        }
+        return loss_number;
+    }
 
 #endif // __TEST_H__
